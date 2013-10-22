@@ -7,3 +7,10 @@ target/
 
 # ignore all files ending with ~
 *~ 
+
+.project
+.classpath
+.DS_Store
+.settings
+
+
