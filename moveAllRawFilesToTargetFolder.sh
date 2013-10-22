@@ -1,2 +1,5 @@
 #!/bin/bash
-mv *.R* /Volumes/SSD2/RAW\ Shoots/RAW/
+source user.cfg
+
+mv *.R* "$target_folder_raw"
+
