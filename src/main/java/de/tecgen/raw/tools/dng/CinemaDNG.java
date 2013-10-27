@@ -23,7 +23,9 @@ public class CinemaDNG {
 	public static void rename(File clip) throws FileNotFoundException {
 		if(isCinemaDNGClip(clip)) {
 			// iterate over all files and rename them 
-			// (use a thread pool to execute renaming of the DNG-file in parallel)
+			// (use a thread pool to execute renaming of the DNG-file in parallel 
+			// if that would speed up the whole process on e.g. on SSDs)
+			
 		} else {
 			throw new FileNotFoundException("Given file is not a valid CinemaDNG clip.");
 		}
@@ -35,8 +37,20 @@ public class CinemaDNG {
 	 * @return true when the given clip is a valid CinemaDNG clip
 	 */
 	private static boolean isCinemaDNGClip(File clip) {
-		//FIXME 
-		return false;
+		if(clip.isDirectory()) {
+			// the directory contains at least one DNG-file ...
+			// e.g. "2013-10-27_1812_(M27-1812)_C0000_00000.dng"
+			
+			// ... with suffix _00000 
+			
+			// all DNG-files need to have the same file name (except for the suffix)
+			// the directory shares this name too!
+			
+			//FIXME 
+			return false;
+		} else {
+			return false;
+		}
 	}
 	
 	public static void main(String[] args) {
