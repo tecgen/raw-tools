@@ -60,6 +60,7 @@ public class CinemaDNG {
 				return false;
 			} else {
 				// ... with suffix _00000 
+				int counter = 0;
 				for(File dngFile : dngFiles) {
 					// all DNG-files need to have the same file name (except for the suffix)
 					// and moreover the directory shares this name too!
