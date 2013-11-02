@@ -111,23 +111,23 @@ public class RawWithRecordDate implements Runnable {
 	public static void main(String[] args) {
 		
 		try {
-		List<String> commandLineArguments = Arrays.asList(args);
-		if (commandLineArguments == null || commandLineArguments.size() < 1) {
-			log.error("Please specify a file name.");
-		} else {
-			Iterator<String> i = commandLineArguments.iterator();
-			String fileNameDotExtension = i.next();
+			List<String> commandLineArguments = Arrays.asList(args);
+			if (commandLineArguments == null || commandLineArguments.size() < 1) {
+				log.error("Please specify a file name.");
+			} else {
+				Iterator<String> i = commandLineArguments.iterator();
+				String fileNameDotExtension = i.next();
 
-			String dateAsString = "";
-			if (i.hasNext()) {
-				dateAsString = i.next();
+				String dateAsString = "";
+				if (i.hasNext()) {
+					dateAsString = i.next();
+				}
+				// execute in this thread
+				new RawWithRecordDate(fileNameDotExtension, dateAsString).run();
+
+				// execute in a separate thread
+				// new Thread(new RawWithRecordDate(fileNameDotExtension)).start();
 			}
-			// execute in this thread
-			new RawWithRecordDate(fileNameDotExtension, dateAsString).run();
-
-			// execute in a separate thread
-			// new Thread(new RawWithRecordDate(fileNameDotExtension)).start();
-		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

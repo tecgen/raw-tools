@@ -38,6 +38,11 @@ public class CinemaDNGTest extends CinemaDNG {
 		getFrameIndexByFileName("test_");
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void getFrameIndexByFileName_leading_index() {
+		getFrameIndexByFileName("000134_test");
+	}
+	
 	
 	
 }
