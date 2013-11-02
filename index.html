@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="RAW-Tools : Magic Lantern RAW Tools" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>RAW-Tools</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/tecgen/raw-tools">View on GitHub</a>
+
+          <h1 id="project_title">RAW-Tools</h1>
+          <h2 id="project_tagline">Magic Lantern RAW Tools</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/tecgen/raw-tools/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/tecgen/raw-tools/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="raw-tools" class="anchor" href="#raw-tools"><span class="octicon octicon-link"></span></a>RAW Tools</h1>
+
+<p>RAW Tools are a set of Java classes and command line scripts 
+which help me to handle Magic Lanterns RAW Video files or CinemaDNG clips better. They are mostly written in Java in order to be platform 
+independent and can be used on OSX and Linux. </p>
+
+<h1>
+<a name="how-to-build" class="anchor" href="#how-to-build"><span class="octicon octicon-link"></span></a>How to build?</h1>
+
+<ul>
+<li>use Maven 3 to build the Java project (<strong>mvn clean install</strong>)</li>
+<li>all bash shell scripts are at least compatible with OSX 10.8.4, but its very likely that they are working on Linux as well</li>
+<li>user dependent configuration for the shell scripts is stored in <strong>user.cfg</strong>
+</li>
+</ul><h1>
+<a name="supported-use-cases" class="anchor" href="#supported-use-cases"><span class="octicon octicon-link"></span></a>Supported use-cases</h1>
+
+<h2>
+<a name="copy-all-raw-and-spanned-files" class="anchor" href="#copy-all-raw-and-spanned-files"><span class="octicon octicon-link"></span></a>Copy all RAW and spanned files</h2>
+
+<p>A simple shell script copies all your *.RAW, *.R01, ..., *.R99 files from you Compact Flash or SD-Card to you local folder.</p>
+
+<p><strong>./copyRawFilesFromCard.sh</strong></p>
+
+<p>Afterwards you can process them further with the following use-cases.</p>
+
+<h2>
+<a name="add-date-and-time-to-all-raw-files" class="anchor" href="#add-date-and-time-to-all-raw-files"><span class="octicon octicon-link"></span></a>Add Date and Time to all RAW files</h2>
+
+<p>Because of the file system restrictions, Magic Lanterns RAW file names are only 8 chars long e.g. <strong>M04-1823.RAW</strong>. With help of
+this use-case you can add to all RAW (and spanned) files the date and time, when these files have been recorded.</p>
+
+<p><strong>./convertAllRawFiles.sh M04-1823.RAW</strong> </p>
+
+<pre><code>12 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - no date specified, using file's last modification date: 2013-11-02
+12 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - found: M04-1823.RAW using date 2013-11-02
+13 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - new file name: 2013-11-02_1823_(M04-1823)
+</code></pre>
+
+<h2>
+<a name="renaming-of-cinemadng-clips" class="anchor" href="#renaming-of-cinemadng-clips"><span class="octicon octicon-link"></span></a>Renaming of CinemaDNG clips</h2>
+
+<p>With help of this shell script &amp; Java class you are able to rename existing CinemaDNG clips, which
+are directories including DNGs files. When they are named in a proper way e.g. Davinci Resolve Lite shows the 
+animated clips when you are in the parent folder. It useful when you want to archive your clips, order them by date
+and want to give them a meaningful name.</p>
+
+<p><strong>./renameCinemaDngClip.sh M27-1812/ 2013-11-02_Cats_C0000</strong></p>
+
+<pre><code>2 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming clip from M27-1812 to 2013-11-02_Cats_C0000
+3 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming frame from 2013-10-27_1812_(M27-1812)_C0000_00000.dng to 2013-11-02_Cats_C0000_00000.dng (1/95)
+4 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming frame from 2013-10-27_1812_(M27-1812)_C0000_00001.dng to 2013-11-02_Cats_C0000_00001.dng (2/95)
+4 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming frame from 2013-10-27_1812_(M27-1812)_C0000_00002.dng to 2013-11-02_Cats_C0000_00002.dng (3/95)
+...
+23 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming frame from 2013-10-27_1812_(M27-1812)_C0000_00094.dng to 2013-11-02_Cats_C0000_00094.dng (95/95)
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">RAW-Tools maintained by <a href="https://github.com/tecgen">tecgen</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
