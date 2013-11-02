@@ -38,7 +38,14 @@ are directories including DNGs files. When they are named in a proper way e.g. D
 animated clips when you are in the parent folder. It useful when you want to archive your clips, order them by date
 and want to give them a meaningful name.
 
-**./renameCinemaDngClip.sh M27-1812/ 2013-10-27_1812_Cats_C0000/**
+**./renameCinemaDngClip.sh M27-1812/ 2013-11-02_Cats_C0000**
+
+    2 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming clip from M27-1812 to 2013-11-02_Cats_C0000
+    3 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming frame from 2013-10-27_1812_(M27-1812)_C0000_00000.dng to 2013-11-02_Cats_C0000_00000.dng (1/95)
+    4 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming frame from 2013-10-27_1812_(M27-1812)_C0000_00001.dng to 2013-11-02_Cats_C0000_00001.dng (2/95)
+    4 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming frame from 2013-10-27_1812_(M27-1812)_C0000_00002.dng to 2013-11-02_Cats_C0000_00002.dng (3/95)
+    ...
+    23 [main] INFO de.tecgen.raw.tools.dng.CinemaDNG - renaming frame from 2013-10-27_1812_(M27-1812)_C0000_00094.dng to 2013-11-02_Cats_C0000_00094.dng (95/95)
 
 
 
