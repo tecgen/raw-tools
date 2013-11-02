@@ -29,18 +29,30 @@ public class CinemaDNG {
 	private final String REGEX_REMOVE_ALL_LEADING_ZEROS = "(?<!\\d)0+(?=\\d+)";
 
 	/**
-	 * 
 	 * @param clip - a Cinema DNG clip (a directory containing DNG image files)
+	 * @param newClipName - name of the clip after the renaming took place 
 	 * @throws FileNotFoundException
 	 */
-	public void rename(File clip) throws FileNotFoundException {
+	public void rename(File clip, String newClipName) throws FileNotFoundException {
 		if(isCinemaDNGClip(clip)) {
+			log.info("renaming clip from " + clip.getName() + " to " + newClipName);
+			final File newClip = new File(newClipName);
+			clip.renameTo(newClip);
 			// iterate over all files and rename them 
-			// (use a thread pool to execute renaming of the DNG-file in parallel 
-			// if that would speed up the whole process on e.g. on SSDs)
-			
+			// TODO use a thread pool to execute renaming of the DNG-file in parallel if that would speed up the whole process on e.g. on SSDs
+			List<File> frames = getAllCineneDngFilesInDirectory(newClip);
+			int counter = 1;
+			for(File frame : frames) {
+				String newName = newClipName + FRAME_INDEX_SEPARATOR + getFrameIndexByFileNameAsString(frame.getName());
+				
+				String progress = "(" + counter + "/" + frames.size() + ")"; 
+				counter++;
+				
+				log.info("renaming frame from " + frame.getName() + " to " + newName + " " + progress);
+				frame.renameTo(new File(newClip.getAbsolutePath() + File.separator + newName));
+			}	
 		} else {
-			throw new FileNotFoundException("Given file is not a valid CinemaDNG clip.");
+			throw new FileNotFoundException("Given file " + clip.getName() + " is not a valid CinemaDNG clip.");
 		}
 	}
 	
@@ -109,25 +121,16 @@ public class CinemaDNG {
 			} else {
 				// ... with suffix _00000 
 				int counter = 0;
-				for(File dngFile : dngFiles) {
+				//for(File dngFile : dngFiles) {
 					// all DNG-files need to have the same file name (except for the suffix)
 					// and moreover the directory should share this name too!
 					
 					
-				}
-				
-				
-				
-				
+				//}
+
+				//FIXME
+				return true;	
 			}
-			
-			
-			
-			
-			
-			
-			//FIXME 
-			return false;
 		} else {
 			return false;
 		}
@@ -141,8 +144,8 @@ public class CinemaDNG {
 			} else {
 				Iterator<String> i = commandLineArguments.iterator();
 				String clip = i.next();
-
-				new CinemaDNG().rename(new File(clip));
+				String newClipName = i.next();
+				new CinemaDNG().rename(new File(clip), newClipName);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
