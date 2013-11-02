@@ -21,6 +21,7 @@ public class CinemaDNG {
 	
 	private final static String ExtentionCinemaDNG = "dng";
 	public final String FRAME_INDEX_SEPARATOR = "_";
+	private final String REGEX_REMOVE_ALL_LEADING_ZEROS = "(?<!\\d)0+(?=\\d+)";
 
 	/**
 	 * 
@@ -38,7 +39,12 @@ public class CinemaDNG {
 		}
 	}
 	
-	protected int getFrameIndexByFileName(String fileName) {
+	/**
+	 * @param fileName of one file in a CinemaDNG clip folder e.g. 2013-10-27_1812_(M27-1812)_C0000_00001
+	 * @return the frame index as integer, in the example above its 1
+	 * @throws IllegalArgumentException in case the frame index can not be extracted from the given file name
+	 */
+	protected int getFrameIndexByFileName(String fileName) throws IllegalArgumentException {
 		
 		StringTokenizer tokenizer = new StringTokenizer(fileName, FRAME_INDEX_SEPARATOR);
 		String lastElement = "";
@@ -47,11 +53,13 @@ public class CinemaDNG {
 			lastElement = tokenizer.nextToken();
 		}
 		// remove all leading zeros
-		lastElement = lastElement.replaceAll("(?<!\\d)0+(?=\\d+)", "");
+		lastElement = lastElement.replaceAll(REGEX_REMOVE_ALL_LEADING_ZEROS, "");
 		
-		Integer frameIndex = Integer.valueOf(lastElement);
-		
-		return frameIndex.intValue();
+		try {
+			return Integer.valueOf(lastElement).intValue();
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Unable to parse frame index from given file name \"" + fileName + "\" .");
+		}
 	}
 	
 	/**
