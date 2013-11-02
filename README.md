@@ -24,11 +24,11 @@ Afterwards you can process them further with the following use-cases.
 Because of the file system restrictions, Magic Lanterns RAW file names are only 8 chars long e.g. **M04-1823.RAW**. With help of
 this use-case you can add to all RAW (and spanned) files the date and time, when these files have been recorded.
 
-** ./convertAllRawFiles.sh M04-1823.RAW** 
+**./convertAllRawFiles.sh M04-1823.RAW** 
 
-   12 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - no date specified, using file's last modification date: 2013-11-02
-   12 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - found: M04-1823.RAW using date 2013-11-02
-   13 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - new file name: 2013-11-02_1823_(M04-1823)
+    12 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - no date specified, using file's last modification date: 2013-11-02
+    12 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - found: M04-1823.RAW using date 2013-11-02
+    13 [main] INFO de.tecgen.raw.tools.filename.RawWithRecordDate - new file name: 2013-11-02_1823_(M04-1823)
 
 
 ## Renaming of CinemaDNG clips
