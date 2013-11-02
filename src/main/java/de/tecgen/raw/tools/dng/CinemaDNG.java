@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Purpose of this class is to allow basic operations for Cinema DNG clips. 
@@ -19,6 +20,7 @@ import java.util.List;
 public class CinemaDNG {
 	
 	private final static String ExtentionCinemaDNG = "dng";
+	public final String FRAME_INDEX_SEPARATOR = "_";
 
 	/**
 	 * 
@@ -34,6 +36,22 @@ public class CinemaDNG {
 		} else {
 			throw new FileNotFoundException("Given file is not a valid CinemaDNG clip.");
 		}
+	}
+	
+	protected int getFrameIndexByFileName(String fileName) {
+		
+		StringTokenizer tokenizer = new StringTokenizer(fileName, FRAME_INDEX_SEPARATOR);
+		String lastElement = "";
+		// iterate over all elements until the last element has been found
+		while(tokenizer.hasMoreElements()) {
+			lastElement = tokenizer.nextToken();
+		}
+		// remove all leading zeros
+		lastElement = lastElement.replaceAll("(?<!\\d)0+(?=\\d+)", "");
+		
+		Integer frameIndex = Integer.valueOf(lastElement);
+		
+		return frameIndex.intValue();
 	}
 	
 	/**
