@@ -135,22 +135,7 @@ public class CinemaDNG {
 			
 			// the directory contains at least one DNG-file ...
 			// e.g. "2013-10-27_1812_(M27-1812)_C0000_00000.dng"
-			if(dngFiles.size() < 1) {
-				// stop when no matching DNG-file has been found
-				return false;
-			} else {
-				// ... with suffix _00000 
-				int counter = 0;
-				//for(File dngFile : dngFiles) {
-					// all DNG-files need to have the same file name (except for the suffix)
-					// and moreover the directory should share this name too!
-					
-					
-				//}
-
-				//FIXME
-				return true;	
-			}
+			return dngFiles.size() > 1;
 		} else {
 			return false;
 		}
